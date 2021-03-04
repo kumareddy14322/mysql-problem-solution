@@ -1,0 +1,75 @@
+umar@kumar:~$ sudo mysql
+[sudo] password for kumar: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 22
+Server version: 8.0.23-0ubuntu0.20.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+
+mysql> exit
+Bye
+kumar@kumar:~$ mysql --vesrion
+mysql: [ERROR] unknown option '--vesrion'.
+kumar@kumar:~$ mysql --version
+mysql  Ver 8.0.23-0ubuntu0.20.04.1 for Linux on x86_64 ((Ubuntu))
+
+
+
+kumar@kumar:~$ sudo mysql -u root -p
+Enter password: 
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
+kumar@kumar:~$ sudo mysql -u root -p
+Enter password: 
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
+kumar@kumar:~$ sudo mysql -u root -p
+Enter password: 
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
+kumar@kumar:~$ mysql
+ERROR 1045 (28000): Access denied for user 'kumar'@'localhost' (using password: NO)
+
+******----to slove this problem follow bellow steps----------*********
+
+kumar@kumar:~$ sudo mysql
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 27
+Server version: 8.0.23-0ubuntu0.20.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+ 
+ create new user with new password 
+
+mysql> create user 'kk'@'localhost' identified by 'kk@12';
+ERROR 1819 (HY000): Your password does not satisfy the current policy requirements
+mysql> create user 'kk'@'localhost' identified by 'Kk@12';
+ERROR 1819 (HY000): Your password does not satisfy the current policy requirements
+
+follow the polcicy requirements to set password
+
+mysql> create user 'kk'@'localhost' identified by 'Kumar@12';
+Query OK, 0 rows affected (0.33 sec)
+
+mysql> grant all privileges on *.* to 'kk'@'localhost' with grant option;
+Query OK, 0 rows affected (0.60 sec)
+
+mysql> flush privileges;
+Query OK, 0 rows affected (0.22 sec)
+
+then login with user and password
+
+$ mysql -u newuser id -p
+
+after enter new  password
+then click enter
